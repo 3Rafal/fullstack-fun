@@ -14,6 +14,8 @@ builder.Services.AddOpenApiDocument(config =>
 
 var app = builder.Build();
 
+DbInitializer.Seed(app);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseOpenApi();
