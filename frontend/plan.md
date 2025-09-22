@@ -43,12 +43,12 @@ interface Todo {
   - Clean up any other template-related files
 
 ### Phase 1: Project Setup and API Integration
-- [ ] **Create API Service Layer**
+- [x] **Create API Service Layer**
   - Create `src/services/api.ts` for HTTP client configuration
   - Implement base API class with error handling
   - Set up TypeScript interfaces for API responses
 
-- [ ] **Create Todo Service**
+- [x] **Create Todo Service**
   - Create `src/services/todoService.ts`
   - Implement all CRUD operations matching backend endpoints
   - Add proper error handling and loading states
