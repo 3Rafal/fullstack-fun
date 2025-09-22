@@ -96,4 +96,17 @@ class ApiClient {
   }
 }
 
+
+function baseURL() {
+  const fallback = 'http://localhost:5000/todoitems'
+  const env = (global as typeof globalThis & { importMetaEnv?: Record<string, string> }).importMetaEnv
+
+  if (env !== undefined) {
+    return env?.VITE_API_BASE_URL || fallback
+  }
+  return fallback
+}
+
+// Default API client instance
+export const apiClient = new ApiClient(baseURL());
 export { ApiClient };
