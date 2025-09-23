@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
           script: |
-            cat <<EOF > /root/apps/fullstack-fun/.env
+            cat <<EOF > /root/apps/fullstack-fun/frontend/.env
             VITE_API_BASE_URL=https://fullstack-fun.com/todoitems
             EOF
 
