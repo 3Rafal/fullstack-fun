@@ -55,23 +55,23 @@ interface Todo {
   - Include TypeScript types for all API interactions
 
 ### Phase 2: Core Components
-- [ ] **Todo Type Definitions**
+- [x] **Todo Type Definitions**
   - Create `src/types/todo.ts` with Todo interface
   - Add types for API responses and error handling
 
-- [ ] **Todo List Component**
+- [x] **Todo List Component**
   - Create `src/components/TodoList.tsx`
   - Display all todos with checkboxes for completion status
   - Include delete functionality for each item
   - Add loading and error states
 
-- [ ] **Todo Item Component**
+- [x] **Todo Item Component**
   - Create `src/components/TodoItem.tsx`
   - Individual todo item with name, checkbox, and delete button
   - Handle completion toggle and delete operations
   - Add proper styling and hover effects
 
-- [ ] **Add Todo Form Component**
+- [x] **Add Todo Form Component**
   - Create `src/components/AddTodoForm.tsx`
   - Input field for new todo name
   - Submit button with form validation
