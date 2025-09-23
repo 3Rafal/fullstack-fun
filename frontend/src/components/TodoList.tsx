@@ -50,11 +50,7 @@ export default function TodoList({ refreshTrigger, onRefreshComplete }: TodoList
   };
 
   if (loading) {
-    return (
-      <div className="todo-list loading">
-        <div className="loading-spinner">Loading todos...</div>
-      </div>
-    );
+    return null;
   }
 
   if (error) {
