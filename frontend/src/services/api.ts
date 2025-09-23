@@ -52,7 +52,7 @@ class ApiClient {
         );
 }
 
-      const data = await response.json();
+      const data = response.status === 204 ? null : await response.json();
 
       return {
         data,
@@ -99,10 +99,9 @@ class ApiClient {
 
 function baseURL() {
   const fallback = 'http://localhost:5000/todoitems'
-  const env = (global as typeof globalThis & { importMetaEnv?: Record<string, string> }).importMetaEnv
 
-  if (env !== undefined) {
-    return env?.VITE_API_BASE_URL || fallback
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return import.meta.env.VITE_API_BASE_URL || fallback
   }
   return fallback
 }

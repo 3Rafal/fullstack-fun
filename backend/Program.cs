@@ -4,6 +4,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DevelopmentCors", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
 {
@@ -13,6 +24,9 @@ builder.Services.AddOpenApiDocument(config =>
 });
 
 var app = builder.Build();
+
+// Use CORS middleware
+app.UseCors("DevelopmentCors");
 
 DbInitializer.Seed(app);
 

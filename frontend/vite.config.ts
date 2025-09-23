@@ -8,4 +8,7 @@ export default defineConfig({
     react(),
     checker({ typescript: true }),
   ],
+  server: {
+    port: 3000,
+  },
 })

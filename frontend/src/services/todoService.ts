@@ -13,7 +13,7 @@ export interface TodoUpdateRequest {
 
 class TodoService {
   private getEndpoint(id?: number): string {
-    return id ? `/${id}` : '';
+    return id !== undefined ? `/${id}` : '';
   }
 
   async getTodos(): Promise<Todo[]> {
