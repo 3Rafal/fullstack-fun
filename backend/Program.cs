@@ -62,17 +62,4 @@ if (app.Environment.IsDevelopment())
 
 app.MapGroup("/todoitems").MapTodoEndpoints();
 
-// Configure SPA fallback routing
-app.UseSpa(spa =>
-{
-    spa.Options.SourcePath = "../frontend";
-
-    if (app.Environment.IsDevelopment())
-    {
-        // In development, proxy requests to the Vite dev server
-        var spaServerUrl = builder.Configuration["Spa:DevelopmentServerUrl"] ?? frontendDevURL;
-        spa.UseProxyToSpaDevelopmentServer(spaServerUrl);
-    }
-});
-
 app.Run();

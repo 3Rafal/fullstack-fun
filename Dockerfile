@@ -30,9 +30,6 @@ COPY --from=backend-build /app/publish/backend ./backend
 # Copy frontend build files
 COPY --from=frontend-build /app/dist ./wwwroot
 
-# Update CORS policy for production
-RUN sed -i 's/http:\/\/localhost:3000/*/g' /app/backend/appsettings.json
-
 EXPOSE 5000
 ENV ASPNETCORE_URLS=http://+:5000
 ENV SPA_STATIC_PATH=./wwwroot
