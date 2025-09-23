@@ -37,29 +37,29 @@ builder.Services.AddSpaStaticFiles(options =>
 
 var app = builder.Build();
 
-// Use static files middleware first (must be before SPA)
+// Serve static files first
 app.UseStaticFiles();
-
-// Use SPA static files middleware
 app.UseSpaStaticFiles();
 
-// Use CORS middleware
+// CORS middleware
 app.UseCors("DevelopmentCors");
 
 DbInitializer.Seed(app);
 
+// Swagger (dev only)
 if (app.Environment.IsDevelopment())
 {
     app.UseOpenApi();
-    app.UseSwaggerUi(config =>
-    {
-        config.DocumentTitle = "TodoAPI";
-        config.Path = "/swagger";
-        config.DocumentPath = "/swagger/{documentName}/swagger.json";
-        config.DocExpansion = "list";
-    });
+    app.UseSwaggerUi();
 }
 
+// API endpoints
 app.MapGroup("/todoitems").MapTodoEndpoints();
+
+// SPA fallback
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "../frontend";
+});
 
 app.Run();
