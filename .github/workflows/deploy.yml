@@ -1,0 +1,44 @@
+name: Deploy fullstack-fun
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Copy app to VPS
+        uses: appleboy/scp-action@v0.1.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          source: "./*"
+          target: "/root/apps/fullstack-fun/"
+
+      - name: Create .env on VPS
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            cat <<EOF > /root/apps/fullstack-fun/.env
+            VITE_API_BASE_URL=https://fullstack-fun.com/todoitems
+            EOF
+
+      - name: Restart container
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            cd /root/apps
+            docker compose up -d --build fullstack-fun
