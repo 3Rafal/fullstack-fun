@@ -13,7 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Copy app to VPS
+      - name: Clean upfront
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            rm -rf /root/apps/fullstack-fun/*
+
+      - name: Copy app
         uses: appleboy/scp-action@v0.1.5
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -22,7 +31,7 @@ jobs:
           source: "./*"
           target: "/root/apps/fullstack-fun/"
 
-      - name: Create .env on VPS
+      - name: Create .env
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -33,7 +42,7 @@ jobs:
             VITE_API_BASE_URL=https://fullstack-fun.3rafal.com/todoitems
             EOF
 
-      - name: Restart container
+      - name: Build and restart
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: ${{ secrets.VPS_HOST }}
