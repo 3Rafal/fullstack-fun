@@ -68,7 +68,6 @@ export default function TodoItem({ todo, onToggleComplete, onUpdate, onDelete }:
           <span
             className="todo-text"
             onClick={handleEdit}
-            style={{ cursor: 'pointer', flex: 1, display: 'block' }}
           >
             {todo.name}
           </span>

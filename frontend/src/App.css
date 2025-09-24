@@ -203,6 +203,9 @@ input[type="checkbox"]:checked::after {
 .todo-text {
   font-size: 1.1rem;
   transition: all 0.2s ease;
+  cursor: pointer;
+  flex: 1;
+  display: block;
 }
 
 .todo-edit-input {
