@@ -205,6 +205,56 @@ input[type="checkbox"]:checked::after {
   transition: all 0.2s ease;
 }
 
+.todo-edit-input {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background-color: white;
+  transition: all 0.2s ease;
+  flex: 1;
+  margin-right: 0.5rem;
+  min-width: 200px;
+}
+
+.todo-edit-input:focus {
+  outline: none;
+  border-color: #333333;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.save-button, .cancel-button {
+  background-color: transparent;
+  color: #666666;
+  border: 1px solid #cccccc;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.cancel-button:hover {
+  background-color: #ff4444;
+  color: white;
+  border-color: #ff4444;
+}
+
 @media (max-width: 768px) {
   .todo-item {
     padding: 0.875rem;

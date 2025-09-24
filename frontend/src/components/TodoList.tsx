@@ -40,6 +40,15 @@ export default function TodoList({ refreshTrigger, onRefreshComplete }: TodoList
     }
   };
 
+  const handleUpdate = async (id: number, request: TodoUpdateRequest) => {
+    try {
+      await todoService.updateTodo(id, request);
+      await fetchTodos();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update todo');
+    }
+  };
+
   const handleDelete = async (id: number) => {
     try {
       await todoService.deleteTodo(id);
@@ -80,6 +89,7 @@ export default function TodoList({ refreshTrigger, onRefreshComplete }: TodoList
             key={todo.id}
             todo={todo}
             onToggleComplete={handleToggleComplete}
+            onUpdate={handleUpdate}
             onDelete={handleDelete}
           />
         ))}
